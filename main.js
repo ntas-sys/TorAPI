@@ -239,7 +239,7 @@ async function RuTracker(query, categoryId, page) {
     const p = getPage(page)
     // Список все зеркальных URL провайдера для перебора в цикле в случае недоступности одного
     const urls = [
-        'https://rutracker.org',
+        'https://rutracker.net',
         'https://rutracker.net',
         'https://rutracker.nl'
     ]
@@ -332,7 +332,7 @@ async function RuTrackerAllPage(query, categoryId) {
 
 // RuTracker ID
 async function RuTrackerID(query) {
-    const url = `https://rutracker.org/forum/viewtopic.php?t=${query}`
+    const url = `https://rutracker.net/forum/viewtopic.php?t=${query}`
     let html
     try {
         const response = await axiosProxy.get(url, {
@@ -352,7 +352,7 @@ async function RuTrackerID(query) {
     // Получение ссылки на загрузку торрент файла (по поиску части содержимого атрибута и по классу необходимы Cookie)
     // let Torrent = data('a[href*="dl.php?t="]').attr('href')
     // let Torrent = data('a.dl-stub.dl-link.dl-topic').attr('href')
-    let Torrent = `https://rutracker.org/forum/dl.php?t=${query}`
+    let Torrent = `https://rutracker.net/forum/dl.php?t=${query}`
     // IMDb
     let imdb
     data('a[href*="imdb.com"]').each((index, element) => {
@@ -489,7 +489,7 @@ async function RuTrackerID(query) {
     if (RuTrackerPuppeteer == true) {
         torrents = await RuTrackerFilesPuppetter(query)
     } else {
-        const urlFiles = 'https://rutracker.org/forum/viewtorrent.php'
+        const urlFiles = 'https://rutracker.net/forum/viewtorrent.php'
         const postData = `t=${query}`
         try {
             const response = await axiosProxy.post(urlFiles, postData, {
@@ -541,7 +541,7 @@ async function RuTrackerID(query) {
 
 async function RuTrackerFilesPuppetter(query) {
     const torrents = []
-    const url = `https://rutracker.org/forum/viewtopic.php?t=${query}`
+    const url = `https://rutracker.net/forum/viewtopic.php?t=${query}`
     const launchOptions = {
         // Скрыть отображение браузера (по умолчанию)
         headless: true,
@@ -575,7 +575,7 @@ async function RuTrackerFilesPuppetter(query) {
         await page.setCookie(cookie)
     }
     // Открываем страницу
-    // await page.goto(`https://rutracker.org/forum/viewtopic.php?t=6489937`, {timeout: 60000, waitUntil: 'domcontentloaded'})
+    // await page.goto(`https://rutracker.net/forum/viewtopic.php?t=6489937`, {timeout: 60000, waitUntil: 'domcontentloaded'})
     await page.goto(url, {
         // Ожиданием загрузку страницы 60 секунд
         timeout: 60000,
@@ -1918,7 +1918,7 @@ const providerList = [
     {
         "Provider": "RuTracker",
         "Urls": [
-            "https://rutracker.org",
+            "https://rutracker.net",
             "https://rutracker.net",
             "https://rutracker.nl"
         ]
